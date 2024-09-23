@@ -29,8 +29,8 @@ OR copy the whole workflow to your repository.
 // fill the config as below in `.github/workflows/notion2md.js`
 const CONFIG ={
   days: 7,
-  dir:'./DIR',
-  filename:'xxx'
+  dir:'./posts',
+  filename:'weekly news'
 }
 ```
 
