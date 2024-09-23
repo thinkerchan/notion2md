@@ -2,8 +2,8 @@ name: Notion to Markdown
 
 on:
   schedule:
-    - cron: '0 1 * * 1'  # 每周一凌晨1点运行
-    # - cron: '*/5 * * * *'  # 每五分钟执行一次
+    - cron: '0 0 * * 1'  #format: minute hour day month weekday
+    # - cron: '*/5 * * * *'  # every 5 minutes
   workflow_dispatch:  # 允许手动触发
 
 permissions:

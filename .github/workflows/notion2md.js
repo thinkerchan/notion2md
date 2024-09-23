@@ -55,6 +55,7 @@ async function main() {
       ],
     });
 
+    let mid = (`${aWeekAgo}_${today}`).replace(/-/g,'')
     let mdHead = `---\ndate: ${mdDate}\ntoc: true\n---\n\n`
     let mdContent = ''
     let secData = {}
@@ -101,12 +102,20 @@ async function main() {
       mdContent+=`## ${key}\n${secData[key].join('')}`
     })
 
-    const fileCount = fs.readdirSync(CONFIG.dir).length +1;
-    const fileName = `${(fileCount < 10? '0'+ fileCount : fileCount) + '-' +(CONFIG.filename || today)}.md`;
-    const filePath = path.join(CONFIG.dir, fileName);
+
+    const existingFiles = fs.readdirSync(CONFIG.dir);
+    const existingFile = existingFiles.find(file => file.includes(mid));
+    let filePath = ''
+    if (existingFile) {
+      filePath = path.join(CONFIG.dir, existingFile);
+    } else {
+      const fileCount = existingFiles.length + 1;
+      const fileName = `${(fileCount < 10 ? '0' + fileCount : fileCount) + '-' + (CONFIG.filename || today)}-${mid}.md`;
+      filePath = path.join(CONFIG.dir, fileName);
+    }
+
     const fileContent = `${mdHead + mdImg + mdContent}`;
     fs.writeFileSync(filePath, fileContent);
-
   } catch (error) {
     console.error("Error:", error);
     process.exit(1);
