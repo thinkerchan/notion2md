@@ -1,0 +1,17 @@
+{
+  "name": "notion2md",
+  "version": "1.0.0",
+  "description": "Automatically convert Notion database to markdown files periodically",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node .github/workflows/notion2md.js"
+  },
+  "keywords": [],
+  "author": "chanthinker@foxmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "@notionhq/client": "^2.2.15",
+    "dotenv": "^16.4.5",
+    "moment": "^2.30.1"
+  }
+}

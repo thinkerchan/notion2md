@@ -1,0 +1,39 @@
+name: Notion to Markdown
+
+on:
+  schedule:
+    # - cron: '0 1 * * 1'  # 每周一凌晨1点运行
+    - cron: '*/5 * * * *'  # 每五分钟执行一次
+  workflow_dispatch:  # 允许手动触发
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-and-create:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: |
+          npm install @notionhq/client moment
+
+      - name: Fetch Notion data and create Markdown files
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+        run: node .github/workflows/notion2md.js
+
+      - name: Commit and push if there are changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Add new posts from Notion" && git push)
