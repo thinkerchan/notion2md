@@ -75,12 +75,13 @@ async function main() {
       const img = props.img?.files[0]?.file?.url || props.img?.files[0]?.external?.url || ''
       const imgDesc = props.imgDesc?.rich_text[0]?.plain_text || ''
 
-      const _content = content?.replace(/\s+/g, '').replace(/\n/g, '');
+      // const _content = content?.replace(/\s+/g, '').replace(/\n/g, '');
+      const _content = content
       const targetStr = formatStr(_content)
       const tag = props.tags.multi_select[0]?.name
 
       const oneImg = cover ? `![](${cover})`:''
-      const oneMsg =`**${index+1}、${title}**\n\n${targetStr}\n${oneImg}\n\n`
+      const oneMsg =`**${index+1}、${title}**\n\n${targetStr}\n\n${oneImg}\n\n`
 
       if (tag) {
         if (!secData[tag]) {
