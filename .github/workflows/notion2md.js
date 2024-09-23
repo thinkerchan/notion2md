@@ -101,8 +101,8 @@ async function main() {
       mdContent+=`## ${key}\n${secData[key].join('')}`
     })
 
-    const fileCount = fs.readdirSync(CONFIG.dir).length;
-    const fileName = `${(fileCount < 10? '0'+fileCount : fileCount) + '-' +(CONFIG.filename || today)}.md`;
+    const fileCount = fs.readdirSync(CONFIG.dir).length +1;
+    const fileName = `${(fileCount < 10? '0'+ fileCount : fileCount) + '-' +(CONFIG.filename || today)}.md`;
     const filePath = path.join(CONFIG.dir, fileName);
     const fileContent = `${mdHead + mdImg + mdContent}`;
     fs.writeFileSync(filePath, fileContent);
