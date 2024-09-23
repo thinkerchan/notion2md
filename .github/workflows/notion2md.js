@@ -102,9 +102,9 @@ async function main() {
       mdContent+=`## ${key}\n${secData[key].join('')}`
     })
 
-
-    const existingFiles = fs.readdirSync(CONFIG.dir);
+    const existingFiles = fs.readdirSync(CONFIG.dir).filter(file => !file.startsWith('.')) // ignore hidden files
     const existingFile = existingFiles.find(file => file.includes(mid));
+
     let filePath = ''
     if (existingFile) {
       filePath = path.join(CONFIG.dir, existingFile);
