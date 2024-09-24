@@ -18,6 +18,14 @@ fill your NOTION_DATABASE_ID and NOTION_TOKEN according to the values that you g
 ## How to deploy
 
 local test
+clone the repo and create .env file like below
+
+```
+NOTION_TOKEN=your_token
+NOTION_DATABASE_ID=your_db_id
+```
+then run the dev command
+
 ```bash
  npm i
  npm run dev
