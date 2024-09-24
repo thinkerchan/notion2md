@@ -68,7 +68,7 @@ async function main() {
     let index = 0;
     for (const page of response.results) {
 
-      const cover = page.cover?.external.url || page.cover?.file.url
+      const cover = page.cover?.external?.url || page.cover?.file.url
 
       const props = page.properties
       const title = props.title?.title[0].plain_text
