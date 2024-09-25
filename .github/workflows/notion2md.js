@@ -79,15 +79,16 @@ async function main() {
       // const _content = content?.replace(/\s+/g, '').replace(/\n/g, '');
       const _content = content
       const targetStr = formatStr(_content)
-      const tag = props.tags.multi_select[0]?.name
-
+      const tag = (props.tags.multi_select && props.tags.multi_select[0]?.name) || props.tags.select?.name // support multi-select and single select
       const oneImg = cover ? `![](${cover})`:''
-      const oneMsg =`**${index+1}、${title}**\n\n${targetStr}\n\n${oneImg}\n\n`
 
       if (tag) {
         if (!secData[tag]) {
           secData[tag] = []
+          secData[tag].index = 0
         }
+        let idx = secData[tag].index++ // hack
+        const oneMsg =`**${idx+1}、${title}**\n\n${targetStr}\n\n${oneImg}\n\n`
         secData[tag].push(oneMsg)
       }
 
