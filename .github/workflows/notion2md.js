@@ -20,9 +20,7 @@ const CONFIG ={
 
 const curTime = moment(Date.now());
 const today = curTime.format('YYYY-MM-DD');
-const mdDate = curTime.format('YYYY/MM/DD');
-const aWeekAgo = moment(curTime).subtract(CONFIG.days, 'days').format('YYYY-MM-DD');
-
+const startDay = moment(curTime).subtract(CONFIG.days, 'days').format('YYYY-MM-DD')
 function formatStr(str) {
   if (!!str && str.trim()) {
     str = str.replace(/[&<>'"]/g, '')
@@ -42,22 +40,31 @@ async function main() {
     const response = await notion.databases.query({
       database_id: databaseId,
       filter: {
-        property: "date",
-        date: {
-          on_or_after: aWeekAgo,
-          on_or_before: today,
-        },
-      },
-      sorts: [
-        {
-          property: "date",
-          direction: "ascending"
-        }
-      ],
+        and: [
+          {
+            property: 'date',
+            date: {
+              on_or_after: startDay
+            }
+          },
+          {
+            property: 'date',
+            date: {
+              before: today
+            }
+          }
+        ],
+        sorts: [
+          {
+            property: "date",
+            direction: "ascending"
+          }
+        ],
+      }
     });
 
-    let mid = (`${aWeekAgo}_${today}`).replace(/-/g,'')
-    let mdHead = `---\ndate: ${mdDate}\ntoc: true\n---\n\n`
+    let mid = (`${startDay}_${today}`).replace(/-/g,'')
+    let mdHead = `---\ndate: ${today.replace(/-/g,'/')}\ntoc: true\n---\n\n`
     let mdContent = ''
     let secData = {}
     let mdImg = ''
