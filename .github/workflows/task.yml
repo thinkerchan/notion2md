@@ -33,7 +33,7 @@ jobs:
 
       - name: Commit and push if there are changes
         run: |
-          git config --local user.email "action@github.com"
+          git config --local user.email "chanthinker@foxmail.com"
           git config --local user.name "GitHub Action"
           git add .
           git diff --quiet && git diff --staged --quiet || (git commit -m "Add new posts from Notion" && git push)

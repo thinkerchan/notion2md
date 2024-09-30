@@ -52,3 +52,6 @@ const CONFIG ={  //default values
 - fill the form and click save
 
 ![demo](https://camo.githubusercontent.com/21883de28cdf349b9652c7347df752687eb436819c3db7572a9d8f7ca881e84b/68747470733a2f2f742d71696e69752e6c696e6b726f757465732e636f6d2f755069632f4a3051475a685f7251454e4c342e706e67)
+
+## Cases
+- [Weekly](https://post.testdog.cn)
