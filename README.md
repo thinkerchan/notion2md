@@ -16,6 +16,8 @@ you can simply duplicate this [demo db](https://thinkrchan.notion.site/10ae95237
 ### 2. get notion token and database id
 - go to https://www.notion.so/profile/integrations to get notion token
 - db id like : 【10ae95237d4b8023add0d42c858d464f】 in [demo db](https://thinkrchan.notion.site/10ae95237d4b8023add0d42c858d464f?v=fffe95237d4b8162bc57000ce467f9df) url
+- token connection
+![](http://t-qiniu.linkroutes.com/uPic/m0rVLc_6JE0Ea.png)
 
 ### 3. fork this repo & create github tokens
 - click to fork [this repo](https://github.com/thinkerchan/notion2md/fork)
