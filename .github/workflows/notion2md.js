@@ -101,7 +101,7 @@ async function main() {
           secData[tag].index = 0
         }
         let idx = secData[tag].index++ // hack
-        const oneMsg =`**${idx+1}、${title}**\n\n${targetStr}\n\n${oneImg}\n\n`
+        const oneMsg =`**${idx+1}、${title.trim()}**\n\n${targetStr}\n\n${oneImg}\n\n`
         secData[tag].push(oneMsg)
       }
 
