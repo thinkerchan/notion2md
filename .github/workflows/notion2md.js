@@ -21,15 +21,14 @@ const CONFIG ={
 const curTime = moment(Date.now());
 const today = curTime.format('YYYY-MM-DD');
 const startDay = moment(curTime).subtract(CONFIG.days, 'days').format('YYYY-MM-DD')
+
 function formatStr(str) {
+  const reg1 = /[<>'"]/g
+  const reg2 = /([^\n\r\t\s]*?)((http|https):\/\/[\w\-]+\.[\w\-]+[^\s]*)/g
+
   if (!!str && str.trim()) {
-    str = str.replace(/[&<>'"]/g, '')
-    const url = str.replace(
-      /([^\n\r\t\s]*?)((http|https):\/\/[\w\-]+\.[\w\-]+(\/[\w\-]+)*\b([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\\+#])?)/g,
-      function(a, b, c) {
-        return (b +'<' +c +'>')
-      }
-    )
+    str = str.replace(reg1, '')
+    const url = str.replace(reg2, (a, b, c)=> (b + '<' + c + '>'))
     return url
   }
   return str
@@ -85,7 +84,8 @@ async function main() {
 
       const props = page.properties
       const title = props.title?.title[0].plain_text
-      const content = props.desc?.rich_text[0]?.plain_text || ''
+      // const content = props.desc?.rich_text[0]?.plain_text || ''
+      const content = props.desc?.rich_text.map(item => item.plain_text).join('') || ''
       const img = props.img?.files[0]?.file?.url || props.img?.files[0]?.external?.url || ''
       const imgDesc = props.imgDesc?.rich_text[0]?.plain_text || ''
 
