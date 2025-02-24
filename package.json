@@ -10,7 +10,7 @@
   "author": "chanthinker@foxmail.com",
   "license": "ISC",
   "dependencies": {
-    "@notionhq/client": "^2.2.15",
+    "@notionhq/client": "^2.2.16",
     "dotenv": "^16.4.5",
     "moment": "^2.30.1"
   }
